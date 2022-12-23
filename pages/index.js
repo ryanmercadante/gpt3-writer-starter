@@ -1,8 +1,15 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import buildspaceLogo from '../assets/buildspace-logo.png';
+import Head from "next/head";
+import Image from "next/image";
+import { useState } from "react";
+import buildspaceLogo from "../assets/buildspace-logo.png";
 
 const Home = () => {
+  const [userInput, setUserInput] = useState("");
+
+  const onUserChangedText = (e) => {
+    setUserInput(e.target.value);
+  };
+
   return (
     <div className="root">
       <Head>
@@ -11,10 +18,25 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>sup, insert your headline here</h1>
+            <h1>Tweet Thread Generator</h1>
           </div>
           <div className="header-subtitle">
-            <h2>insert your subtitle here</h2>
+            <h2>Input the topic of your thread and we'll generate the rest.</h2>
+          </div>
+        </div>
+        <div className="prompt-container">
+          <textarea
+            className="prompt-box"
+            placeholder="start typing here"
+            value={userInput}
+            onChange={onUserChangedText}
+          />
+          <div className="prompt-buttons">
+            <a className="generate-button" onClick={null}>
+              <div className="generate">
+                <p>Generate</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
